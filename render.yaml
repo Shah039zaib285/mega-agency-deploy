@@ -14,20 +14,20 @@ services:
       - key: N8N_PORT
         value: "5678"
       - key: WEBHOOK_URL
-        value: "https://mega-agency-n8n.onrender.com"
+        value: "REPLACE_ME"
       - key: DATABASE_URL
-        value: "postgres://dummy:dummy@supabase:5432/dummydb"
+        value: "REPLACE_ME"
 
   - type: web
     name: mega-agency-litellm
-    env: node
+    env: python
     plan: free
     branch: main
-    buildCommand: "npm install"
-    startCommand: "node app.js"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python server.py"
     envVars:
       - key: GEMINI_API_KEY
-        value: "dummy"
+        value: "REPLACE_ME"
 
   - type: web
     name: mega-agency-bridge
@@ -38,7 +38,7 @@ services:
     startCommand: "node index.js"
     envVars:
       - key: BRIDGE_SECRET
-        value: "dummy"
+        value: "REPLACE_ME"
 
   - type: web
     name: mega-agency-monitor
@@ -49,12 +49,12 @@ services:
     startCommand: "node monitor.js"
     envVars:
       - key: MONITOR_SECRET
-        value: "dummy"
+        value: "REPLACE_ME"
 
   - type: web
     name: mega-agency-deploy
     env: node
     plan: free
     branch: main
-    buildCommand: "echo Deploy OK"
-    startCommand: "node -e \"console.log('Deploy service OK')\""
+    buildCommand: "echo Deployment repo ready"
+    startCommand: "node -e \"console.log('Deploy placeholder')\""

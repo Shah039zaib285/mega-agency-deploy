@@ -1,1 +1,1 @@
-# Deployment scripts for Mega Agency
+# Deploy Blueprint placeholder
