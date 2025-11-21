@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: mega-agency-n8n
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: n8n start

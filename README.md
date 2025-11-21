@@ -1,1 +1,1 @@
-# mega-agency-deploy
+# Deployment scripts for Mega Agency
