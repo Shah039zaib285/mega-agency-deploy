@@ -9,11 +9,17 @@ services:
     startCommand: npm start
     envVars:
       - key: SUPABASE_URL
+        value: REPLACE_ME
       - key: SUPABASE_KEY
+        value: REPLACE_ME
       - key: LITELLM_URL
+        value: REPLACE_ME
       - key: BRIDGE_URL
+        value: REPLACE_ME
       - key: WEBHOOK_SECRET
+        value: REPLACE_ME
       - key: N8N_HOST
+        value: "0.0.0.0"
       - key: N8N_PORT
         value: "5678"
 
@@ -27,6 +33,7 @@ services:
     startCommand: python server.py
     envVars:
       - key: GEMINI_API_KEY
+        value: REPLACE_ME
       - key: MODEL
         value: "gemini-1.5-flash"
 
@@ -40,6 +47,7 @@ services:
     startCommand: node index.js
     envVars:
       - key: N8N_WEBHOOK_URL
+        value: REPLACE_ME
       - key: SESSION_NAME
         value: "mega-session"
       - key: PORT
@@ -55,14 +63,13 @@ services:
     startCommand: node monitor.js
     envVars:
       - key: SERVICE_URL
+        value: REPLACE_ME
       - key: CHECK_INTERVAL
         value: "300"
 
   - type: web
     name: mega-agency-deploy
-    env: node
+    env: docker
     repo: https://github.com/Shah039zaib285/mega-agency-deploy
     branch: main
     plan: free
-    buildCommand: npm install
-    startCommand: echo "Deployment repo – no service"
