@@ -2,6 +2,67 @@ services:
   - type: web
     name: mega-agency-n8n
     env: node
+    repo: https://github.com/Shah039zaib285/mega-agency-bot
+    branch: main
     plan: free
     buildCommand: npm install
-    startCommand: n8n start
+    startCommand: npm start
+    envVars:
+      - key: SUPABASE_URL
+      - key: SUPABASE_KEY
+      - key: LITELLM_URL
+      - key: BRIDGE_URL
+      - key: WEBHOOK_SECRET
+      - key: N8N_HOST
+      - key: N8N_PORT
+        value: "5678"
+
+  - type: web
+    name: mega-agency-litellm
+    env: python
+    repo: https://github.com/Shah039zaib285/litellm-fixed
+    branch: main
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: GEMINI_API_KEY
+      - key: MODEL
+        value: "gemini-1.5-flash"
+
+  - type: web
+    name: mega-agency-bridge
+    env: node
+    repo: https://github.com/Shah039zaib285/mega-agency-bridge
+    branch: main
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: N8N_WEBHOOK_URL
+      - key: SESSION_NAME
+        value: "mega-session"
+      - key: PORT
+        value: "3000"
+
+  - type: web
+    name: mega-agency-monitor
+    env: node
+    repo: https://github.com/Shah039zaib285/mega-agency-monitor
+    branch: main
+    plan: free
+    buildCommand: npm install
+    startCommand: node monitor.js
+    envVars:
+      - key: SERVICE_URL
+      - key: CHECK_INTERVAL
+        value: "300"
+
+  - type: web
+    name: mega-agency-deploy
+    env: node
+    repo: https://github.com/Shah039zaib285/mega-agency-deploy
+    branch: main
+    plan: free
+    buildCommand: npm install
+    startCommand: echo "Deployment repo – no service"
