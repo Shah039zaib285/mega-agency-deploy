@@ -2,74 +2,59 @@ services:
   - type: web
     name: mega-agency-n8n
     env: node
-    repo: https://github.com/Shah039zaib285/mega-agency-bot
-    branch: main
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "npx n8n"
     envVars:
-      - key: SUPABASE_URL
-        value: REPLACE_ME
-      - key: SUPABASE_KEY
-        value: REPLACE_ME
-      - key: LITELLM_URL
-        value: REPLACE_ME
-      - key: BRIDGE_URL
-        value: REPLACE_ME
-      - key: WEBHOOK_SECRET
-        value: REPLACE_ME
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "false"
       - key: N8N_HOST
         value: "0.0.0.0"
       - key: N8N_PORT
         value: "5678"
+      - key: WEBHOOK_URL
+        value: "https://mega-agency-n8n.onrender.com"
+      - key: DATABASE_URL
+        value: "postgres://dummy:dummy@supabase:5432/dummydb"
 
   - type: web
     name: mega-agency-litellm
-    env: python
-    repo: https://github.com/Shah039zaib285/litellm-fixed
-    branch: main
+    env: node
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: python server.py
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node app.js"
     envVars:
       - key: GEMINI_API_KEY
-        value: REPLACE_ME
-      - key: MODEL
-        value: "gemini-1.5-flash"
+        value: "dummy"
 
   - type: web
     name: mega-agency-bridge
     env: node
-    repo: https://github.com/Shah039zaib285/mega-agency-bridge
-    branch: main
     plan: free
-    buildCommand: npm install
-    startCommand: node index.js
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node index.js"
     envVars:
-      - key: N8N_WEBHOOK_URL
-        value: REPLACE_ME
-      - key: SESSION_NAME
-        value: "mega-session"
-      - key: PORT
-        value: "3000"
+      - key: BRIDGE_SECRET
+        value: "dummy"
 
   - type: web
     name: mega-agency-monitor
     env: node
-    repo: https://github.com/Shah039zaib285/mega-agency-monitor
-    branch: main
     plan: free
-    buildCommand: npm install
-    startCommand: node monitor.js
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node monitor.js"
     envVars:
-      - key: SERVICE_URL
-        value: REPLACE_ME
-      - key: CHECK_INTERVAL
-        value: "300"
+      - key: MONITOR_SECRET
+        value: "dummy"
 
   - type: web
     name: mega-agency-deploy
-    env: docker
-    repo: https://github.com/Shah039zaib285/mega-agency-deploy
-    branch: main
+    env: node
     plan: free
+    branch: main
+    buildCommand: "echo Deploy OK"
+    startCommand: "node -e \"console.log('Deploy service OK')\""
